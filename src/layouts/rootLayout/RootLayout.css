@@ -1,0 +1,32 @@
+.root-layout{
+    padding: 16px 64px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: inherit;
+            gap: 8px;
+            font-weight: bold;
+
+            img {
+                height: 32px;
+                width: 32px;
+            }
+
+        }
+    }
+
+    main{
+        background-color: aqua;
+        overflow: hidden;
+    }
+}
