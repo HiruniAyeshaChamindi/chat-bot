@@ -1,10 +1,10 @@
 import './SignInPage.css';
+import { SignIn } from '@clerk/clerk-react'
 
 const SignInPage = () => {
     return (
         <div className="sign-in-page">
-            {/* Sign In form will go here */}
-            <h1>Sign In</h1>
+            <SignIn path="/sign-in" signUpUrl='/sign-up' forceRedirectUrl="/dashboard"/>
         </div>
     );
 };

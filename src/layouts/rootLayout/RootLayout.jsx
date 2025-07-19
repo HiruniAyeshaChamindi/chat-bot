@@ -1,21 +1,41 @@
 import './RootLayout.css';
-import { Link,Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton
+} from '@clerk/clerk-react';
 
-const RootLayout = ({ children }) => {
-    return (
-        <div className="root-layout">
-            <header>
-                <Link to="/" className='logo'>
-                    <img src="logo.png" alt="Logo" />
-                    <span>ChatBot</span>
-                </Link>
-                <div className="user"></div>
-            </header>
-            <main>
-                <Outlet />
-            </main>
-        </div>
-    );
+const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
+
+if (!PUBLISHABLE_KEY) {
+  throw new Error('Missing Clerk Publishable Key');
+}
+
+const RootLayout = () => {
+  return (
+    <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+      <div className="root-layout">
+        <header>
+          <Link to="/" className="logo">
+            <img src="logo.png" alt="Logo" />
+            <span>TENSOR AI</span>
+          </Link>
+          <div className="user">
+
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+          </div>
+        </header>
+        <main>
+          <Outlet />
+        </main>
+      </div>
+    </ClerkProvider>
+  );
 };
 
 export default RootLayout;
